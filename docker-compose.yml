@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    # 如果需要连接其他服务（如数据库），可以取消下面的注释
+    # depends_on:
+    #   - db
+  
+  # 如果需要数据库，可以取消下面的注释
+  # db:
+  #   image: mysql:8.0
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=your_root_password
+  #     - MYSQL_DATABASE=your_database
+  #     - MYSQL_USER=your_user
+  #     - MYSQL_PASSWORD=your_password
+  #   volumes:
+  #     - db_data:/var/lib/mysql
+  #   ports:
+  #     - "3306:3306"
+
+# 如果使用数据库，需要定义 volumes
+# volumes:
+#   db_data:
